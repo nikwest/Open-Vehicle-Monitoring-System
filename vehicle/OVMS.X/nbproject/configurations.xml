@@ -64,7 +64,7 @@
         <targetHeader></targetHeader>
         <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>C18</languageToolchain>
-        <languageToolchainVersion></languageToolchainVersion>
+        <languageToolchainVersion>3.40</languageToolchainVersion>
         <platform>4</platform>
       </toolsSet>
       <compileType>
@@ -87,7 +87,7 @@
         <property key="enable-opa" value="true"/>
         <property key="enable-all-optimizations" value="true"/>
         <property key="preprocessor-macros" value=""/>
-        <property key="default-char-unsigned" value="true"/>
+        <property key="default-char-unsigned" value="false"/>
         <property key="optimization-master" value="Enable all"/>
         <property key="code-model" value="mS"/>
         <property key="warning-level" value="2"/>
@@ -110,8 +110,8 @@
       </C18>
       <C18-AS>
         <property key="default.radix" value="HEX"/>
-        <property key="enable.case.sensitivity" value="false"/>
         <property key="hex.output.format" value="INHX32"/>
+        <property key="enable.case.sensitivity" value="true"/>
         <property key="preprocessor.macros" value=""/>
         <property key="warning.level" value="0"/>
         <property key="cross.reference.file" value=""/>
@@ -124,9 +124,9 @@
       </C18-LD>
       <C18LanguageToolchain>
         <property key="stack-analysis-mplink" value="false"/>
-        <property key="extended-mode-mcc18" value="false"/>
-        <property key="stack-analysis" value="false"/>
         <property key="stack-analysis-mcc18" value="false"/>
+        <property key="stack-analysis" value="false"/>
+        <property key="extended-mode-mcc18" value="false"/>
         <property key="extended-mode" value="false"/>
         <property key="extended-mode-mpasm" value="false"/>
         <property key="extended-mode-mplink" value="false"/>
@@ -135,7 +135,7 @@
         <property key="programoptions.preserveprogramrange.end" value="0x3f"/>
         <property key="memories.id" value="false"/>
         <property key="Freeze Peripherals" value="true"/>
-        <property key="programoptions.preserveeeprom" value="true"/>
+        <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="memories.programmemory" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
@@ -149,10 +149,10 @@
         <property key="programoptions.preserveprogramrange.start" value="0x0"/>
         <property key="voltagevalue" value="5.0"/>
         <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="memories.programmemory.start" value="0x0"/>
         <property key="programoptions.eraseb4program" value="true"/>
+        <property key="memories.programmemory.start" value="0x0"/>
         <property key="memories.programmemory.end" value="0xffff"/>
-        <property key="poweroptions.powerenable" value="false"/>
+        <property key="poweroptions.powerenable" value="true"/>
       </PICkit3PlatformTool>
     </conf>
   </confs>
