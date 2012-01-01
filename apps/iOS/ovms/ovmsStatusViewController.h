@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *m_car_connection_state;
 @property (strong, nonatomic) IBOutlet UIImageView *m_car_image;
 @property (strong, nonatomic) IBOutlet UILabel *m_car_charge_state;
+@property (strong, nonatomic) IBOutlet UILabel *m_car_charge_time;
 @property (strong, nonatomic) IBOutlet UILabel *m_car_charge_type;
 @property (strong, nonatomic) IBOutlet UILabel *m_car_soc;
 @property (strong, nonatomic) IBOutlet UIImageView *m_battery_front;

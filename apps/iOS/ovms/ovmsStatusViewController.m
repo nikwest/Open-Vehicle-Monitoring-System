@@ -13,10 +13,22 @@
 @synthesize m_car_connection_state;
 @synthesize m_car_image;
 @synthesize m_car_charge_state;
+@synthesize m_car_charge_time;
 @synthesize m_car_charge_type;
 @synthesize m_car_soc;
 @synthesize m_battery_front;
 @synthesize m_car_range;
+
+
+static NSDateFormatter *dateFormatter = nil;
+
++(void)initialize {
+    if (self == [ovmsStatusViewController class]) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -31,7 +43,7 @@
   [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
   [ovmsAppDelegate myRef].status_delegate = self;
-  
+    
   self.navigationItem.title = [ovmsAppDelegate myRef].sel_label;
 
   [self updateStatus];
@@ -42,6 +54,7 @@
     [self setM_car_image:nil];
     [self setM_car_charge_state:nil];
     [self setM_car_charge_type:nil];
+    [self setM_car_charge_time:nil];
     [self setM_car_soc:nil];
     [self setM_battery_front:nil];
     [self setM_car_range:nil];
@@ -87,6 +100,27 @@
     }
 }
 
+- (NSTimeInterval) calculateChargeTime {
+    int voltage = [ovmsAppDelegate myRef].car_linevoltage;
+    int current = [ovmsAppDelegate myRef].car_chargecurrent;
+    int soc = [ovmsAppDelegate myRef].car_soc;
+    int battery = 53000;
+    
+    float full = 1.0;
+    
+    if([[ovmsAppDelegate myRef].car_chargemode isEqualToString:@"standard"]) {
+        full =  0.9;
+    }
+    
+    int energy = voltage * current;
+    
+    float missing = battery * (full - soc/100.0);
+    
+    int result = missing / energy * 3600;
+    
+    return result;
+}
+
 -(void) updateStatus
 {
   NSString* units;
@@ -100,6 +134,8 @@
   int minutes = (time(0)-lastupdated)/60;
   int hours = minutes/60;
   int days = minutes/(60*24);
+    
+    m_car_charge_time.text=@"";
   
   NSString* c_good;
   NSString* c_bad;
@@ -187,6 +223,7 @@
     m_car_charge_type.text = [NSString stringWithFormat:@"%dV @%dA",
     [ovmsAppDelegate myRef].car_linevoltage,
     [ovmsAppDelegate myRef].car_chargecurrent];
+        m_car_charge_time.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:[self calculateChargeTime]]];
     }
   else if ([[ovmsAppDelegate myRef].car_chargestate isEqualToString:@"topoff"])
     {

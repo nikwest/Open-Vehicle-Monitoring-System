@@ -1,12 +1,8 @@
 build/
 debug/
 .DS_Store
-vehicle/OVMS.X/dist/default/
 vehicle/OVMS.X/nbproject/configurations.xml
 vehicle/OVMS.X/nbproject/Makefile-genesis.properties
 apps/iOS/Open Vehicle.xcodeproj/project.xcworkspace/xcuserdata/
 apps/iOS/Open Vehicle.xcodeproj/xcuserdata/
 
-vehicle/OVMS.X/dist/default/production/OVMS.X.production.hex
-
-vehicle/OVMS.X/dist/default/production/OVMS.X.production.hex
