@@ -31,6 +31,7 @@
 #include <stdio.h>
 #include <usart.h>
 #include <string.h>
+#include <stdlib.h>
 #include "ovms.h"
 #include "net.h"
 #include "net_sms.h"
@@ -301,10 +302,25 @@ void net_sms_in(char *caller, char *buf, unsigned char pos)
           f = atoi(buf+8);
           if ((f>=0)&&(f<FEATURES_MAX))
             sys_features[f] = atoi(buf+y+1);
+          break; // Exit the while loop, as we are done
           }
         else
           y++;
         }
+      }
+    else
+      {
+#ifndef OVMS_SUPPRESS_ACCESSDENIED_SMS
+      net_send_sms_rom(caller,NET_MSG_DENIED);
+#endif
+      }
+    }
+  else if (memcmppgm2ram(buf, (char const rom far*)"RESET", 5) == 0)
+    {
+    p = par_get(PARAM_REGPHONE);
+    if (strncmp(p,caller,strlen(p)) == 0)
+      {
+      net_state_enter(NET_STATE_HARDRESET);
       }
     else
       {
