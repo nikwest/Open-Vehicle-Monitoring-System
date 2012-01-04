@@ -72,7 +72,8 @@ unsigned char car_speed = 0; // speed in defined units (mph or kph)
 unsigned char car_SOC = 0; // State of Charge in %
 unsigned int car_idealrange = 0; // Ideal Range in miles
 unsigned int car_estrange = 0; // Estimated Range
-unsigned long car_time; // UTC Time
+unsigned long car_time = 0; // UTC Time
+unsigned long car_parktime = 0; // UTC time car was parked (or 0 if not)
 unsigned char car_vin[18] = "-----------------"; // VIN
 unsigned char car_tpem = 0; // Tpem
 unsigned char car_tmotor = 0; // Tmotor
@@ -95,7 +96,7 @@ void main(void)
 
   for (x=0;x<FEATURES_MAX;x++)
     sys_features[x]=0; // Turn off the features
-  
+
   PORTA = 0x00; // Initialise port A
   ADCON1 = 0x0F; // Switch off A/D converter
   TRISB = 0xFE;

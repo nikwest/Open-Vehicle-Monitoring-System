@@ -206,12 +206,12 @@ void net_msg_stat(void)
   if (*p == 'M') // Kmh or Miles
     sprintf(net_msg_scratchpad, (rom far char*)"%u,", car_idealrange);
   else
-    sprintf(net_msg_scratchpad, (rom far char*)"%u,", (unsigned int) ((float) car_idealrange * 1.609));
+    sprintf(net_msg_scratchpad, (rom far char*)"%u,", (unsigned int) (((float) car_idealrange * 1.609))+0.5);
   strcat(net_scratchpad,net_msg_scratchpad);
   if (*p == 'M') // Kmh or Miles
     sprintf(net_msg_scratchpad, (rom far char*)"%u", car_estrange);
   else
-    sprintf(net_msg_scratchpad, (rom far char*)"%u", (unsigned int) ((float) car_estrange * 1.609));
+    sprintf(net_msg_scratchpad, (rom far char*)"%u", (unsigned int) (((float) car_estrange * 1.609))+0.5);
   strcat(net_scratchpad,net_msg_scratchpad);
   net_msg_encode_puts();
   }
@@ -262,7 +262,7 @@ void net_msg_firmware(void)
   {
   // Send firmware version and GSM signal level
   strcpypgm2ram(net_scratchpad,(char const rom far*)"MP-0 F");
-  sprintf(net_msg_scratchpad, (rom far char*)"1.0.5,%s,%d",
+  sprintf(net_msg_scratchpad, (rom far char*)"1.0.8,%s,%d",
     car_vin, net_sq);
   strcat(net_scratchpad,net_msg_scratchpad);
   net_msg_encode_puts();
@@ -270,11 +270,18 @@ void net_msg_firmware(void)
 
 void net_msg_environment(void)
   {
+  unsigned long park;
+
+  if (car_parktime == 0)
+    park = 0;
+  else
+    park = car_time - car_parktime;
+
   strcpypgm2ram(net_scratchpad,(char const rom far*)"MP-0 D");
-  sprintf(net_msg_scratchpad, (rom far char*)"%d,%d,%d,%d,%d,%d,%d,%lu,%d",
+  sprintf(net_msg_scratchpad, (rom far char*)"%d,%d,%d,%d,%d,%d,%d,%lu,%d,%lu",
           car_doors1, car_doors2, car_lockstate,
           car_tpem, car_tmotor, car_tbattery,
-          car_trip, car_odometer, car_speed);
+          car_trip, car_odometer, car_speed, park);
   strcat(net_scratchpad,net_msg_scratchpad);
   net_msg_encode_puts();
   }
@@ -482,7 +489,7 @@ void net_msg_alert(void)
   if (*p == 'M') // Kmh or Miles
     sprintf(net_msg_scratchpad, (rom far char*)"%u mi", car_idealrange); // Miles
   else
-    sprintf(net_msg_scratchpad, (rom far char*)"%u Km", (unsigned int) ((float) car_idealrange * 1.609)); // Kmh
+    sprintf(net_msg_scratchpad, (rom far char*)"%u Km", (unsigned int) (((float) car_idealrange * 1.609))+0.5); // Kmh
   strcat((char*)net_scratchpad,net_msg_scratchpad);
 
   strcatpgm2ram(net_scratchpad,(char const rom far *)" SOC: ");
