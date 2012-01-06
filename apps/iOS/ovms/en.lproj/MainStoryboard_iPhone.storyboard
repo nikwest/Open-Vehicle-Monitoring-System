@@ -50,7 +50,7 @@
                                 <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="-" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="as8-eT-6NH" userLabel="car_charge_state">
-                                <rect key="frame" x="26" y="174" width="268" height="29"/>
+                                <rect key="frame" x="26" y="144" width="268" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="-" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="8Nu-Np-kIL" userLabel="car_charge_type">
-                                <rect key="frame" x="26" y="203" width="268" height="29"/>
+                                <rect key="frame" x="26" y="211" width="268" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="-" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="83S-40-nyL" userLabel="car_charge_time">
-                                <rect key="frame" x="26" y="144" width="268" height="29"/>
+                                <rect key="frame" x="26" y="178" width="268" height="29"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
@@ -601,6 +601,8 @@
                 <relationship kind="outlet" name="m_car_connection_image" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="m_car_connection_state" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="m_car_image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="m_car_parking_image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="m_car_parking_state" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="m_car_range" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="m_car_soc" candidateClass="UILabel"/>
             </relationships>
